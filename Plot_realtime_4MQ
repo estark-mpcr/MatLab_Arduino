@@ -1,0 +1,46 @@
+% Plotting in real time output of 4 MQ gas sensors
+% Matlab, Arduino add-on
+
+% Will's Special Preamble
+clear all
+close all
+clc
+
+% Define the arduino
+a = arduino()
+
+% A0 is MQ-3 (Alcohol)
+% A1 is MQ-2 (General Combustible Gas)
+% A2 is MQ-6 (LPG, Propane)
+% A3 is MQ-135 (AQC = NH3, Benzene, Alcohol, Smoke)
+% Read in a single value
+                
+alc = readVoltage(a, 'A0')
+aqc = readVoltage(a, 'A1')
+abc = readVoltage(a, 'A2')
+adc = readVoltage(a, 'A3')
+
+% Create an empty array
+MQzero = []
+MQone = []
+MQtwo = []
+MQthree = []
+
+% Create for loop to store 50 voltage values
+for i = 1:600
+    MQzero(i,1) = readVoltage(a, 'A0')
+    MQone(i,1) = readVoltage(a, 'A1')
+    MQtwo(i,1) = readVoltage(a, 'A2')
+    MQthree(i,1) = readVoltage(a, 'A3')
+    I(i,1) = i
+    
+    
+    figure(1)
+    plot(I, MQzero, I,  MQone, I, MQtwo, I, MQthree, '--',  'linewidth', 2)
+    legend('Alcohol','Combustable Gas', 'LPG/Propane', 'Air Quality', 'location', 'northwest')
+    
+    drawnow()
+    
+end
+
+%EOF
