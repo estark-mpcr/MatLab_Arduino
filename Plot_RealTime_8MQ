@@ -1,0 +1,60 @@
+% Clean Code Preamble
+clear all               % removes workspace variables
+close all               % clears the command window
+clc                     % clean up the command window
+
+% Define the arduino
+a = arduino()
+
+% Sensors Used in Array
+% A0 is MQ-2    (General Combustible Gas)
+% A1 is MQ-3    (Alcohol)
+% A2 is MQ-4    (Natural Gas, Methane)
+% A3 is MQ-5    (LPG, Natural Gas, Coal Gas)
+    % A4 is MQ-6    (LPG, Propane)
+% A5 is MQ-7    (Carbon Monoxide)
+% A6 is MQ-8    (Hydrogen)
+% A7 is MQ-9    (CO and Combustable Gases)
+% A8 is MQ-135  (AQC = NH3, Benzene, Alcohol, Smoke)
+% Read in a single value
+                
+A = readVoltage(a, 'A0')
+B = readVoltage(a, 'A1')
+C = readVoltage(a, 'A2')
+D = readVoltage(a, 'A3')
+E = readVoltage(a, 'A4')
+F = readVoltage(a, 'A5')
+G = readVoltage(a, 'A6')
+H = readVoltage(a, 'A7')
+%I = readVoltage(a, 'A8')
+
+% Create an empty array
+MQ2 = []
+MQ3 = []
+MQ4 = []
+MQ5 = []
+MQ6 = []
+MQ7 = []
+MQ8 = []
+MQ9 = []
+MQ135 = []
+% Create for loop to store voltage values
+for i = 1:5000
+    MQ2(i,1) = readVoltage(a, 'A0')
+    MQ3(i,1) = readVoltage(a, 'A1')
+    MQ4(i,1) = readVoltage(a, 'A2')
+    MQ5(i,1) = readVoltage(a, 'A3')
+  % MQ6(i,1) = readVoltage(a, 'A4')
+    MQ7(i,1) = readVoltage(a, 'A4')
+    MQ8(i,1) = readVoltage(a, 'A5')
+    MQ9(i,1) = readVoltage(a, 'A6')
+    MQ135(i,1) = readVoltage(a, 'A7')
+    I(i,1) = i
+    
+    figure(1)
+    plot(I, MQ2, I, MQ3, I, MQ4, I, MQ5, I, MQ7,I, MQ8, I, MQ9, I, MQ135, '--',  'linewidth', 2)
+    legend('MQ-2', 'MQ-3', 'MQ-4', 'MQ-5', 'MQ-7', 'MQ-8', 'MQ-9', 'MQ-135','location', 'northwest')
+    
+    drawnow()
+    
+end
