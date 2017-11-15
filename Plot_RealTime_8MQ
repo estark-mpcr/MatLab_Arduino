@@ -11,11 +11,11 @@ a = arduino()
 % A1 is MQ-3    (Alcohol)
 % A2 is MQ-4    (Natural Gas, Methane)
 % A3 is MQ-5    (LPG, Natural Gas, Coal Gas)
-    % A4 is MQ-6    (LPG, Propane)
-% A5 is MQ-7    (Carbon Monoxide)
-% A6 is MQ-8    (Hydrogen)
-% A7 is MQ-9    (CO and Combustable Gases)
-% A8 is MQ-135  (AQC = NH3, Benzene, Alcohol, Smoke)
+        % A4 is MQ-6    (LPG, Propane) Not Used in This Design
+% A4 is MQ-7    (Carbon Monoxide)
+% A5 is MQ-8    (Hydrogen)
+% A6 is MQ-9    (CO and Combustable Gases)
+% A7 is MQ-135  (AQC = NH3, Benzene, Alcohol, Smoke)
 % Read in a single value
                 
 A = readVoltage(a, 'A0')
@@ -26,7 +26,7 @@ E = readVoltage(a, 'A4')
 F = readVoltage(a, 'A5')
 G = readVoltage(a, 'A6')
 H = readVoltage(a, 'A7')
-%I = readVoltage(a, 'A8')
+%I = readVoltage(a, 'A8')   Not Used in This Design
 
 % Create an empty array
 MQ2 = []
